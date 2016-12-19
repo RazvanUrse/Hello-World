@@ -1,52 +1,80 @@
-#include<iostream>
+#include <iostream>
 #include<vector>
 
 using namespace std;
 
 template <class T>
-
 class Stack{
-std::vector<T> s;
-
+private:
+    vector <T> s;
 public:
-    bool Empty ();
-    void push (const T&);
-    T top(){return s.back;}
+    bool empty(){
+        return (s.empty());
+    }
+
+    void push(const T x){
+        s.push_back(x);
+    }
+
     void pop(){
-        if(s.size()>0)
         s.pop_back();
-        };
+    }
+
+    T & top (){
+        return s.back();
+    }
+
     void print();
-
 };
-template <class T>
-bool Stack<T>::Empty(){
-if(s.size()==0)
-    return 1;
-return 0;
 
-}
-
-template <class T>
-void Stack <T>::push(const T &element){
-s.push_back(element);
+template<class T>
+void Stack<T>::print(){
+        cout << "Vectorul contine :";
+            for (typename vector<T>::iterator it = s.begin() ; it != s.end(); ++it)
+                cout << ' ' << *it;
+        cout << '\n';
 }
 
 int main()
 {
-    Stack<double> x;
+    Stack <int> stiva;
+    Stack <char*> siruri;
 
-    x.push(1.1);
-    x.push(5.5);
-    x.push(9.9);
+    stiva.push(1);
+    stiva.push(5);
+    stiva.push(7);
+    stiva.push(9);
 
-    x.print();
+    stiva.print();
 
-    x.pop();
+    stiva.pop();
 
-    x.print();
+    stiva.print();
 
-    cout<<x.top();
+    if(stiva.empty())
+        cout << "Stiva goala!\n";
+    else
+        cout << "Stiva nu este goala!\n";
+
+    cout << "Ultimul element este: " << stiva.top() << "\n";
+
+
+    cout << "\n\nStack siruri:\n\n";
+    char sir1[] = "ana";
+    char sir2[] = "are";
+    char sir3[] = "mere";
+    siruri.push(sir1);
+    siruri.push(sir2);
+    siruri.push(sir3);
+
+    siruri.print();
+
+    siruri.pop();
+    siruri.print();
+
+
+
+
 
 
     return 0;
